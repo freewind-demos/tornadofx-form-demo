@@ -1,6 +1,9 @@
 buildscript {
     ext.kotlin_version = '1.2.51'
     repositories {
+        mavenLocal()
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
         jcenter()
     }
     dependencies {
@@ -11,11 +14,13 @@ buildscript {
 apply plugin: 'kotlin'
 
 compileKotlin {
-    kotlinOptions.jvmTarget= "1.8"
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 repositories {
-    mavenLocal()
+//    mavenLocal()
+    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+    maven { url 'http://maven.aliyun.com/nexus/content/repositories/jcenter' }
     jcenter()
 }
 
@@ -25,8 +30,4 @@ dependencies {
     testCompile "junit:junit:4.11"
     testCompile 'org.assertj:assertj-core:3.9.0'
     testCompile "org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version"
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = "4.6"
 }
